@@ -14,7 +14,7 @@ export const fetchAsyncGet = createAsyncThunk('task/get', async () => {
 });
 
 export const fetchAsyncCreate = createAsyncThunk('task/post', async (task) => {
-  const res = await Axios.post(apiUrl, {
+  const res = await Axios.post(apiUrl, task, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `JWT ${token}`,
@@ -24,7 +24,7 @@ export const fetchAsyncCreate = createAsyncThunk('task/post', async (task) => {
 });
 
 export const fetchAsyncUpdate = createAsyncThunk('task/put', async (task) => {
-  const res = await Axios.put(`${apiUrl}{task.id}/`, {
+  const res = await Axios.put(`${apiUrl}{task.id}/`, task, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `JWT ${token}`,
@@ -44,12 +44,12 @@ export const fetchAsyncDelete = createAsyncThunk('task/delete', async (id) => {
 });
 
 const taskSlice = createSlice({
-  name: 'tasks',
+  name: 'task',
   initialState: {
     tasks: [
       {
         id: 0,
-        title: 0,
+        title: '',
         created_at: '',
         updated_at: '',
       },
@@ -57,15 +57,15 @@ const taskSlice = createSlice({
     editedTask: [
       {
         id: 0,
-        title: 0,
+        title: '',
         created_at: '',
         updated_at: '',
       },
     ],
-    selectedTtask: [
+    selectedTask: [
       {
         id: 0,
-        title: 0,
+        title: '',
         created_at: '',
         updated_at: '',
       },
@@ -98,14 +98,14 @@ const taskSlice = createSlice({
         tasks: state.tasks.map((t) =>
           t.id === action.payload.id ? action.payload : t
         ),
-        selectedTtask: action.payload,
+        selectedTask: action.payload,
       };
     });
     builder.addCase(fetchAsyncDelete.fulfilled, (state, action) => {
       return {
         ...state,
         tasks: state.tasks.filter((t) => t.id !== action.payload),
-        selectedTtask: { id: 0, title: 0, created_at: '', updated_at: '' },
+        selectedTask: { id: 0, title: '', created_at: '', updated_at: '' },
       };
     });
   },
@@ -113,8 +113,8 @@ const taskSlice = createSlice({
 
 export const { editTask, selectTask } = taskSlice.actions;
 
-export const selectSelected = (state) => state.task.selectedTask;
-export const selectEdited = (state) => state.task.editedTask;
+export const selectSelectedTask = (state) => state.task.selectedTask;
+export const selectEditedTask = (state) => state.task.editedTask;
 export const selectTasks = (state) => state.task.tasks;
 
 export default taskSlice.reducer;

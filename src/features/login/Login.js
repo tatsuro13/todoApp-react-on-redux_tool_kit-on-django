@@ -48,7 +48,7 @@ const Login = () => {
         <input
           type="password"
           className={Styles.inputLog}
-          name="username"
+          name="password"
           placeholder=""
           onChange={(e) => {
             dispatch(editPassword(e.target.value));

@@ -5,7 +5,7 @@ const apiUrl = 'http://localhost:8000/';
 const token = localStorage.localJWT;
 
 export const fetchAsyncLogin = createAsyncThunk('login/post', async (auth) => {
-  const res = await Axios.post(`${apiUrl}authen/jwt/create/`, auth, {
+  const res = await Axios.post(`${apiUrl}authen/jwt/create`, auth, {
     headers: {
       'Content-Type': 'application/json',
     },
