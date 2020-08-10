@@ -54,22 +54,18 @@ const taskSlice = createSlice({
         updated_at: '',
       },
     ],
-    editedTask: [
-      {
-        id: 0,
-        title: '',
-        created_at: '',
-        updated_at: '',
-      },
-    ],
-    selectedTask: [
-      {
-        id: 0,
-        title: '',
-        created_at: '',
-        updated_at: '',
-      },
-    ],
+    editedTask: {
+      id: 0,
+      title: '',
+      created_at: '',
+      updated_at: '',
+    },
+    selectedTask: {
+      id: 0,
+      title: '',
+      created_at: '',
+      updated_at: '',
+    },
   },
   reducers: {
     editTask(state, action) {
