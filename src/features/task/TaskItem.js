@@ -4,7 +4,7 @@ import Styles from './TaskItem.module.css';
 import { BsTrash } from 'react-icons/bs';
 import { FaEdit } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { fetchAsyncDelete, selectEditedTask, selectTasks } from './taskSlice';
+import { fetchAsyncDelete, selectTask, editTask } from './taskSlice';
 
 const TaskItem = ({ task }) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const TaskItem = ({ task }) => {
     <li className={Styles.listItem}>
       <span
         className={Styles.cursor}
-        onClick={() => dispatch(selectTasks(task))}
+        onClick={() => dispatch(selectTask(task))}
       >
         {task.title}
       </span>
@@ -24,7 +24,7 @@ const TaskItem = ({ task }) => {
           <BsTrash />
         </button>
         <button
-          onClick={() => dispatch(selectEditedTask(task))}
+          onClick={() => dispatch(editTask(task))}
           className={Styles.taskIcon}
         >
           <FaEdit />

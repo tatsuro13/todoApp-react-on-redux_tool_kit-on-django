@@ -24,7 +24,7 @@ export const fetchAsyncCreate = createAsyncThunk('task/post', async (task) => {
 });
 
 export const fetchAsyncUpdate = createAsyncThunk('task/put', async (task) => {
-  const res = await Axios.put(`${apiUrl}{task.id}/`, task, {
+  const res = await Axios.put(`${apiUrl}${task.id}/`, task, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `JWT ${token}`,
@@ -34,7 +34,7 @@ export const fetchAsyncUpdate = createAsyncThunk('task/put', async (task) => {
 });
 
 export const fetchAsyncDelete = createAsyncThunk('task/delete', async (id) => {
-  await Axios.delete(`${apiUrl}{id}/`, {
+  await Axios.delete(`${apiUrl}${id}/`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `JWT ${token}`,
