@@ -19,7 +19,7 @@ const TaskList = () => {
   }, [dispatch]);
   return (
     <div>
-      <ul className={Styles.TaskList}>
+      <ul className={Styles.taskList}>
         {tasks.map((task) => (
           <TaskItem key={task.id} task={task} />
         ))}
